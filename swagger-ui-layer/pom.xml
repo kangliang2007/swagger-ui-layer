@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.ohcomeyes</groupId>
+    <groupId>com.github.kangliang2007</groupId>
     <artifactId>swagger-ui-layer</artifactId>
     <version>1.2</version>
     <name>${project.artifactId}</name>
-    <url>https://github.com/ohcomeyes/swagger-ui-layer</url>
+    <url>https://github.com/kangliang2007/swagger-ui-layer</url>
     <description>Pretty swagger ui api documentation</description>
     <!--快照版本<version>1.0-SNAPSHOT</version>-->
     <licenses>
@@ -19,8 +19,8 @@
     </licenses>
     <developers>
         <developer>
-            <name>ohcomeyes</name>
-            <email>txenergy@163.com</email>
+            <name>kangliang2007</name>
+            <email>kangliang2007@126.com</email>
             <roles>
                 <role>developer</role>
             </roles>
@@ -28,9 +28,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:https://github.com/ohcomeyes/swagger-ui-layer.git</connection>
-        <developerConnection>scm:git:https://github.com/ohcomeyes/swagger-ui-layer.git</developerConnection>
-        <url>https://github.com/ohcomeyes/swagger-ui-layer</url>
+        <connection>scm:git:https://github.com/kangliang2007/swagger-ui-layer.git</connection>
+        <developerConnection>scm:git:https://github.com/kangliang2007/swagger-ui-layer.git</developerConnection>
+        <url>https://github.com/kangliang2007/swagger-ui-layer</url>
         <tag>v${project.version}</tag>
     </scm>
 

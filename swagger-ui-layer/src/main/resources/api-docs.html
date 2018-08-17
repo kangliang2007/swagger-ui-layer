@@ -39,7 +39,7 @@
                                     {{props prop}}
                                         {{if prop.tags[0] == ~tag.name}}
                                             <dd title="{{:key}} {{:prop.description}}">
-                                                <a href="javascript:;" name="a_path" path="{{:~path.key}}" method="{{:key}}" operationId="{{:prop.operationId}}"><i class="fa fa-navicon" data-icon="fa-navicon"></i><cite class="">{{:~path.key}}</cite><cite class="{{:key}}_font pl10">{{:prop.summary}}</cite></a>
+                                                <a href="javascript:;" name="a_path" path="{{:~path.key}}" method="{{:key}}" operationId="{{:prop.operationId}}"><i class="fa fa-navicon" data-icon="fa-navicon"></i><cite class=""><cite class="{{:key}}_font pl10">{{:prop.summary}}</cite></a>
                                             </dd>
                                         {{/if}}
                                     {{/props}}
@@ -102,15 +102,14 @@
               </tbody>
             </table>
             <fieldset class="layui-elem-field layui-field-title" >
-                <legend>Parameters</legend>
+                <legend>请求参数</legend>
             </fieldset>
             <table class="layui-table">
               <thead>
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Parameter Type</th>
-                    <th>Data Type</th>
+                    <th>type</th>
                     <th>Required</th>
                 </tr> 
               </thead>
@@ -119,8 +118,7 @@
                     <tr>
                         <td>{{:name}}</td>
                         <td>{{:description}}</td>
-                        <td>{{:in}}</td>
-                        <td>{{:type}}</td>     
+                        <td>{{:type}}</td>
                         {{if required}}
                             <td><i class="layui-icon">&#xe618;</i></td>
                         {{else}}
@@ -131,19 +129,35 @@
               </tbody>
             </table>
             <fieldset class="layui-elem-field layui-field-title" >
-                <legend>Responses</legend>
+                <legend>返回参数</legend>
             </fieldset>
-            <table class="layui-table">
-              <thead>
-                <tr>
-                    <th>Properties</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr> 
-              </thead>
-              <tbody id="path-body-response-model">
-              </tbody>
-            </table>
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th>Properties</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody id="path-body-response-model">
+                    </tbody>
+
+                </table>
+                <fieldset class="layui-elem-field layui-field-title" >
+                    <legend>【data】数据体</legend>
+                </fieldset>
+                <table class="layui-table" style="margin-left: 30px;width: 50%">
+                    <thead>
+                    <tr>
+                        <th>Properties</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody id="path-child-body-response-model">
+                    </tbody>
+
+                </table>
             </div>
             <div class="layui-tab-item">
                 <fieldset class="layui-elem-field layui-field-title" >

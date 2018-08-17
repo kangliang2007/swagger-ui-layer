@@ -43,12 +43,52 @@ $(function(){
 	            var operationId = $(this).attr("operationId");
 	            $.each(jsonData.paths[path],function(i,d){
 	              if(d.operationId == operationId){
+
                       d.path = path;
                       d.method = method;
+                      //组装成单个参数集合的模型
+                      var tempObjArr=[];
+                      $.each(d.parameters,function (index,item) {
+                          if(typeof (item.schema)!='undefined'&&typeof (item.schema.$ref)!='undefined'){
+                              if(item['schema']['$ref'].indexOf("#/def")>-1){ //代表为对象形式
+                                  var modelName = getResponseModelName(item['schema']["$ref"]);
+                                  requestParames=jsonData.definitions[modelName].properties;
+                                  requiredArr =jsonData.definitions[modelName].required;
+                                  for(param in requestParames){
+                                      var tempObj={};
+                                      tempObj.name=param;
+                                      if( $.inArray(param,requiredArr)>=0){ //判断是否必须的参数
+                                          tempObj.required=true
+                                      }
+                                      tempObj.description=requestParames[param].description
+                                      tempObj.type=requestParames[param].type
+                                      tempObjArr.push(tempObj);
+                                  }
+
+
+                              }
+                          }
+
+                      })
+                      if(tempObjArr.length>0){
+                          d.parameters=tempObjArr;
+                      }
+
 		              $("#path-body").html(tempBody.render(d));
                       var modelName = getResponseModelName(d.responses["200"]["schema"]["$ref"]);
+                      var childDataHtml="";
                       if(modelName){
+                          if(typeof (jsonData.definitions[modelName].properties.data.$ref)!='undefined'){
+                                //某个参数有子对象
+                              var objName=getResponseModelName(jsonData.definitions[modelName].properties.data.$ref)
+                              var obj=jsonData.definitions[objName];
+                              childDataHtml=tempBodyResponseModel.render(obj);
+                              jsonData.definitions[modelName].properties.data.type="子对象"
+                          }
+
                         $("#path-body-response-model").html(tempBodyResponseModel.render(jsonData.definitions[modelName]));
+                        $("#path-child-body-response-model").html(childDataHtml);
+
                       }
 	              }
 	            });

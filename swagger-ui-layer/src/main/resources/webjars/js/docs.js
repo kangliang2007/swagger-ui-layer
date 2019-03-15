@@ -48,28 +48,31 @@ $(function(){
                       d.method = method;
                       //组装成单个参数集合的模型
                       var tempObjArr=[];
-                      $.each(d.parameters,function (index,item) {
-                          if(typeof (item.schema)!='undefined'&&typeof (item.schema.$ref)!='undefined'){
-                              if(item['schema']['$ref'].indexOf("#/def")>-1){ //代表为对象形式
-                                  var modelName = getResponseModelName(item['schema']["$ref"]);
-                                  requestParames=jsonData.definitions[modelName].properties;
-                                  requiredArr =jsonData.definitions[modelName].required;
-                                  for(param in requestParames){
-                                      var tempObj={};
-                                      tempObj.name=param;
-                                      if( $.inArray(param,requiredArr)>=0){ //判断是否必须的参数
-                                          tempObj.required=true
-                                      }
-                                      tempObj.description=requestParames[param].description
-                                      tempObj.type=requestParames[param].type
-                                      tempObjArr.push(tempObj);
-                                  }
-
-
+                      if(d.parameters !=null) {
+                        $.each(d.parameters, function (index, item) {
+                          if (typeof (item.schema) != 'undefined'
+                              && typeof (item.schema.$ref) != 'undefined') {
+                            if (item['schema']['$ref'].indexOf("#/def") > -1) { //代表为对象形式
+                              var modelName = getResponseModelName(
+                                  item['schema']["$ref"]);
+                              requestParames = jsonData.definitions[modelName].properties;
+                              requiredArr = jsonData.definitions[modelName].required;
+                              for (param in requestParames) {
+                                var tempObj = {};
+                                tempObj.name = param;
+                                if ($.inArray(param, requiredArr) >= 0) { //判断是否必须的参数
+                                  tempObj.required = true
+                                }
+                                tempObj.description = requestParames[param].description
+                                tempObj.type = requestParames[param].type
+                                tempObjArr.push(tempObj);
                               }
+
+                            }
                           }
 
-                      })
+                        })
+                      }
                       if(tempObjArr.length>0){
                           d.parameters=tempObjArr;
                       }

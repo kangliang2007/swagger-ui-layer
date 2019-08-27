@@ -20,6 +20,8 @@ $(function () {
   $.ajax({
     url: "v2/api-docs",
 // 	        url : "http://petstore.swagger.io/v2/swagger.json",
+
+
         dataType : "json",
         type : "get",
         async : false,
